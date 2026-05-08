@@ -1,0 +1,1461 @@
+<!DOCTYPE html>
+<html lang="bs">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Za radost djece — Tuzlanska igrališta</title>
+<meta name="description" content="Građanska inicijativa za obnovu i održavanje dječijih igrališta u Tuzli — sigurnih, modernih i dostupnih svoj djeci." />
+
+<!-- Open Graph -->
+<meta property="og:title" content="Za radost djece — Tuzlanska igrališta" />
+<meta property="og:description" content="Obnova, upravljanje i održavanje dječijih igrališta u Tuzli kroz udruženje građana i partnerstvo sa Gradom." />
+<meta property="og:type" content="website" />
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..900,0..100&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+<style>
+  /* ------------------------------------------------------------------
+     Tokens
+  ------------------------------------------------------------------ */
+  :root {
+    --cream:        #f6f0e4;
+    --cream-deep:   #ece3cf;
+    --cream-soft:   #fbf7ee;
+    --ink:          #1c2a1f;
+    --ink-soft:     #2f3b30;
+    --moss:         #3f5a3a;
+    --moss-deep:    #2a3f27;
+    --terracotta:   #c2542d;
+    --terracotta-d: #a8431f;
+    --sun:          #e9b94a;
+    --sage:         #9aac86;
+    --line:         rgba(28, 42, 31, 0.18);
+    --line-soft:    rgba(28, 42, 31, 0.08);
+
+    --font-display: 'Fraunces', 'Times New Roman', serif;
+    --font-body:    'Manrope', system-ui, sans-serif;
+
+    --container:    min(1200px, 92vw);
+    --radius:       4px;
+  }
+
+  /* ------------------------------------------------------------------
+     Reset & base
+  ------------------------------------------------------------------ */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--font-body);
+    font-weight: 400;
+    color: var(--ink);
+    background: var(--cream);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  img, svg { display: block; max-width: 100%; }
+  a { color: inherit; text-decoration: none; }
+  ul { list-style: none; }
+  button { font: inherit; cursor: pointer; border: none; background: none; }
+
+  /* ------------------------------------------------------------------
+     Typography
+  ------------------------------------------------------------------ */
+  .display {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-variation-settings: "opsz" 144, "SOFT" 30;
+    letter-spacing: -0.02em;
+    line-height: 1.02;
+    color: var(--ink);
+  }
+  .display em {
+    font-style: italic;
+    font-variation-settings: "opsz" 144, "SOFT" 80;
+    color: var(--terracotta);
+  }
+  .eyebrow {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.8rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--moss);
+  }
+  .lead {
+    font-size: clamp(1.05rem, 1.4vw, 1.2rem);
+    color: var(--ink-soft);
+    max-width: 60ch;
+  }
+
+  /* ------------------------------------------------------------------
+     Layout
+  ------------------------------------------------------------------ */
+  .container { width: var(--container); margin-inline: auto; }
+  section { padding: clamp(4rem, 9vw, 8rem) 0; position: relative; }
+
+  /* ------------------------------------------------------------------
+     Nav
+  ------------------------------------------------------------------ */
+  .nav {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(246, 240, 228, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .nav-inner {
+    width: var(--container);
+    margin-inline: auto;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 0;
+  }
+  .brand {
+    display: flex; align-items: center; gap: 0.65rem;
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 1.1rem;
+    letter-spacing: -0.01em;
+  }
+  .brand-mark {
+    width: 32px; height: 32px;
+    flex-shrink: 0;
+  }
+  .nav-links {
+    display: flex; gap: 2rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+  }
+  .nav-links a { color: var(--ink-soft); transition: color 0.2s; }
+  .nav-links a:hover { color: var(--terracotta); }
+  .nav-cta {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 0.65rem 1.25rem;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .nav-cta:hover { background: var(--terracotta); transform: translateY(-1px); }
+
+  @media (max-width: 760px) {
+    .nav-links { display: none; }
+  }
+
+  /* ------------------------------------------------------------------
+     Hero
+  ------------------------------------------------------------------ */
+  .hero {
+    padding-top: clamp(3rem, 6vw, 5rem);
+    padding-bottom: clamp(4rem, 8vw, 7rem);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: end;
+  }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    margin-bottom: 1.5rem;
+  }
+  .hero-eyebrow::before {
+    content: ''; width: 28px; height: 1.5px; background: var(--moss);
+  }
+  .hero h1 {
+    font-size: clamp(2.6rem, 7.2vw, 6.5rem);
+    margin-bottom: 1.75rem;
+  }
+  .hero-meta {
+    border-top: 1px solid var(--line);
+    padding-top: 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  .hero-meta dt {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--moss);
+    margin-bottom: 0.4rem;
+  }
+  .hero-meta dd {
+    font-family: var(--font-display);
+    font-size: clamp(1.4rem, 2.2vw, 1.9rem);
+    font-variation-settings: "opsz" 60, "SOFT" 30;
+    line-height: 1.1;
+  }
+  .hero-cta-row {
+    margin-top: 2.5rem;
+    display: flex; gap: 1rem; flex-wrap: wrap;
+  }
+  .btn-primary {
+    background: var(--terracotta);
+    color: var(--cream-soft);
+    padding: 1rem 1.75rem;
+    border-radius: 999px;
+    font-weight: 600;
+    transition: background 0.2s, transform 0.2s;
+    display: inline-flex; align-items: center; gap: 0.5rem;
+  }
+  .btn-primary:hover { background: var(--terracotta-d); transform: translateY(-2px); }
+  .btn-ghost {
+    color: var(--ink);
+    padding: 1rem 1.5rem;
+    border-radius: 999px;
+    font-weight: 600;
+    border: 1.5px solid var(--ink);
+    transition: background 0.2s, color 0.2s;
+    display: inline-flex; align-items: center; gap: 0.5rem;
+  }
+  .btn-ghost:hover { background: var(--ink); color: var(--cream); }
+
+  /* Hero illustration */
+  .hero-art {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    background: var(--moss);
+    border-radius: 240px 240px 8px 8px;
+    overflow: hidden;
+  }
+  .hero-art-inner { position: absolute; inset: 0; }
+
+  @media (max-width: 860px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero-art { aspect-ratio: 5 / 4; max-height: 420px; }
+    .hero-meta { grid-template-columns: 1fr; gap: 1rem; }
+  }
+
+  /* ------------------------------------------------------------------
+     Problem (stats)
+  ------------------------------------------------------------------ */
+  .problem {
+    background: var(--cream-deep);
+    border-top: 1px solid var(--line-soft);
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .problem-head {
+    display: grid; grid-template-columns: 1fr 1.4fr; gap: 3rem;
+    margin-bottom: 4rem;
+    align-items: end;
+  }
+  .problem-head h2 {
+    font-size: clamp(2rem, 4.5vw, 3.4rem);
+  }
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border-top: 1.5px solid var(--ink);
+    border-bottom: 1.5px solid var(--ink);
+  }
+  .stat {
+    padding: 2.5rem 1.5rem 2rem 0;
+    border-right: 1px solid var(--line);
+  }
+  .stat:last-child { border-right: none; padding-right: 0; }
+  .stat:not(:first-child) { padding-left: 1.5rem; }
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 6vw, 5rem);
+    font-variation-settings: "opsz" 144, "SOFT" 50;
+    line-height: 1;
+    color: var(--terracotta);
+    display: flex; align-items: baseline;
+  }
+  .stat-num small { font-size: 0.4em; color: var(--ink); margin-left: 0.3rem; font-weight: 500; }
+  .stat-label {
+    margin-top: 0.75rem;
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    max-width: 28ch;
+  }
+  @media (max-width: 760px) {
+    .problem-head { grid-template-columns: 1fr; gap: 1.5rem; }
+    .stats { grid-template-columns: 1fr; }
+    .stat { border-right: none; border-bottom: 1px solid var(--line); padding: 1.75rem 0; }
+    .stat:last-child { border-bottom: none; }
+    .stat:not(:first-child) { padding-left: 0; }
+  }
+
+  /* ------------------------------------------------------------------
+     Section header (general)
+  ------------------------------------------------------------------ */
+  .section-head {
+    margin-bottom: 4rem;
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 3rem;
+    align-items: end;
+  }
+  .section-head h2 {
+    font-size: clamp(2rem, 4.5vw, 3.4rem);
+  }
+  @media (max-width: 760px) {
+    .section-head { grid-template-columns: 1fr; gap: 1.25rem; }
+  }
+
+  /* ------------------------------------------------------------------
+     Goals
+  ------------------------------------------------------------------ */
+  .goals-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--line);
+  }
+  .goal {
+    padding: 2.5rem 2rem 2.5rem 0;
+    border-bottom: 1px solid var(--line);
+    border-right: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1.5rem;
+    align-items: start;
+  }
+  .goal:nth-child(2n) { padding-right: 0; padding-left: 2rem; border-right: none; }
+  .goal:nth-last-child(-n+2) { border-bottom: none; }
+  .goal-num {
+    font-family: var(--font-display);
+    font-size: 2.2rem;
+    font-style: italic;
+    font-variation-settings: "opsz" 144, "SOFT" 90;
+    color: var(--terracotta);
+    line-height: 1;
+  }
+  .goal h3 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 1.35rem;
+    font-variation-settings: "opsz" 60;
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+  }
+  .goal p { color: var(--ink-soft); font-size: 0.97rem; }
+
+  @media (max-width: 760px) {
+    .goals-grid { grid-template-columns: 1fr; }
+    .goal { padding: 1.75rem 0; border-right: none; }
+    .goal:nth-child(2n) { padding-left: 0; }
+    .goal:nth-last-child(-n+2) { border-bottom: 1px solid var(--line); }
+    .goal:last-child { border-bottom: none; }
+  }
+
+  /* ------------------------------------------------------------------
+     Locations
+  ------------------------------------------------------------------ */
+  .locations {
+    background: var(--ink);
+    color: var(--cream-soft);
+  }
+  .locations .eyebrow { color: var(--sun); }
+  .locations h2 { color: var(--cream-soft); }
+  .locations .lead { color: rgba(246, 240, 228, 0.75); }
+
+  .loc-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+  .loc {
+    padding: 2rem;
+    border: 1px solid rgba(246, 240, 228, 0.18);
+    border-radius: var(--radius);
+    background: rgba(246, 240, 228, 0.03);
+    transition: background 0.3s, transform 0.3s;
+    position: relative;
+  }
+  .loc:hover {
+    background: rgba(246, 240, 228, 0.06);
+    transform: translateY(-3px);
+  }
+  .loc-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--sun);
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  .loc h3 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 1.5rem;
+    font-variation-settings: "opsz" 80;
+    margin-bottom: 0.75rem;
+    color: var(--cream-soft);
+  }
+  .loc p {
+    color: rgba(246, 240, 228, 0.7);
+    font-size: 0.95rem;
+  }
+  .loc-num {
+    position: absolute;
+    top: 1.5rem; right: 1.75rem;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-variation-settings: "opsz" 144, "SOFT" 100;
+    font-size: 2rem;
+    color: rgba(233, 185, 74, 0.4);
+  }
+  @media (max-width: 760px) {
+    .loc-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ------------------------------------------------------------------
+     Budget table
+  ------------------------------------------------------------------ */
+  .budget-wrap {
+    border-top: 1.5px solid var(--ink);
+  }
+  .budget-row {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr auto;
+    gap: 1.5rem;
+    padding: 1.25rem 0;
+    border-bottom: 1px solid var(--line);
+    align-items: baseline;
+  }
+  .budget-row.total {
+    border-top: 1px solid var(--ink);
+    border-bottom: 1.5px solid var(--ink);
+    padding: 1.5rem 0;
+    background: var(--cream-deep);
+    margin: 0 -2rem; padding-left: 2rem; padding-right: 2rem;
+  }
+  .budget-row.total .b-item { font-family: var(--font-display); font-size: 1.3rem; font-weight: 500; }
+  .budget-row.total .b-amount { font-size: 1.6rem; color: var(--terracotta); }
+  .b-item {
+    font-weight: 600;
+    font-size: 1rem;
+  }
+  .b-desc {
+    color: var(--ink-soft);
+    font-size: 0.92rem;
+  }
+  .b-amount {
+    font-family: var(--font-display);
+    font-variation-settings: "opsz" 60;
+    font-size: 1.15rem;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  @media (max-width: 760px) {
+    .budget-row { grid-template-columns: 1fr; gap: 0.3rem; padding: 1rem 0; }
+    .b-amount { font-size: 1.05rem; color: var(--terracotta); }
+    .budget-row.total { margin: 0; padding: 1.25rem 0; }
+  }
+
+  .budget-note {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: var(--cream-soft);
+    border-left: 3px solid var(--sun);
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+  }
+
+  /* ------------------------------------------------------------------
+     Funding pillars
+  ------------------------------------------------------------------ */
+  .funding {
+    background: var(--cream-soft);
+  }
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+  .pillar {
+    padding: 1.75rem 1.5rem;
+    background: var(--cream);
+    border-radius: var(--radius);
+    border-top: 3px solid var(--terracotta);
+  }
+  .pillar:nth-child(2) { border-top-color: var(--moss); }
+  .pillar:nth-child(3) { border-top-color: var(--sun); }
+  .pillar:nth-child(4) { border-top-color: var(--sage); }
+  .pillar-pct {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    font-variation-settings: "opsz" 144, "SOFT" 40;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+  .pillar h4 {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+  }
+  .pillar p {
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+  }
+  @media (max-width: 860px) { .pillars { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 480px) { .pillars { grid-template-columns: 1fr; } }
+
+  /* ------------------------------------------------------------------
+     Programs
+  ------------------------------------------------------------------ */
+  .programs-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+  .program {
+    border-top: 1.5px solid var(--ink);
+    padding-top: 1.5rem;
+  }
+  .program-icon {
+    width: 36px; height: 36px;
+    margin-bottom: 1rem;
+    color: var(--terracotta);
+  }
+  .program h3 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 1.25rem;
+    font-variation-settings: "opsz" 80;
+    margin-bottom: 0.6rem;
+    line-height: 1.25;
+  }
+  .program p {
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+  }
+  @media (max-width: 860px) { .programs-grid { grid-template-columns: 1fr; gap: 1.5rem; } }
+
+  /* ------------------------------------------------------------------
+     Media (news links)
+  ------------------------------------------------------------------ */
+  .media {
+    background: var(--cream-deep);
+    border-top: 1px solid var(--line-soft);
+  }
+  .media-group {
+    margin-top: 3rem;
+  }
+  .media-group + .media-group { margin-top: 4rem; }
+  .media-group-title {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--moss);
+    margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .media-group-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--line);
+  }
+  .media-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+  .media-card {
+    background: var(--cream-soft);
+    border: 1px solid var(--line-soft);
+    border-radius: var(--radius);
+    padding: 1.5rem 1.5rem 1.25rem;
+    display: flex; flex-direction: column;
+    transition: transform 0.25s, border-color 0.25s, background 0.25s;
+    text-decoration: none;
+    color: inherit;
+  }
+  .media-card:hover {
+    transform: translateY(-3px);
+    background: var(--cream);
+    border-color: var(--ink);
+  }
+  .media-meta {
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 0.75rem;
+    margin-bottom: 1rem;
+    letter-spacing: 0.04em;
+  }
+  .media-source {
+    font-weight: 600;
+    color: var(--moss);
+  }
+  .media-date {
+    color: var(--ink-soft);
+    opacity: 0.7;
+  }
+  .media-card h3 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 1.15rem;
+    font-variation-settings: "opsz" 60;
+    line-height: 1.3;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.01em;
+  }
+  .media-card p {
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+  }
+  .media-link {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--terracotta);
+    display: inline-flex; align-items: center; gap: 0.35rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .media-link svg {
+    transition: transform 0.2s;
+  }
+  .media-card:hover .media-link svg {
+    transform: translate(2px, -2px);
+  }
+  @media (max-width: 1024px) {
+    .media-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 640px) {
+    .media-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ------------------------------------------------------------------
+     Get involved (CTA)
+  ------------------------------------------------------------------ */
+  .involve {
+    background: var(--terracotta);
+    color: var(--cream-soft);
+  }
+  .involve .eyebrow { color: var(--sun); }
+  .involve h2 { color: var(--cream-soft); font-size: clamp(2.2rem, 5vw, 4rem); }
+  .involve h2 em { color: var(--sun); }
+  .involve .lead { color: rgba(246, 240, 228, 0.85); }
+  .involve-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  .involve-card {
+    background: rgba(246, 240, 228, 0.08);
+    border: 1px solid rgba(246, 240, 228, 0.2);
+    padding: 2rem;
+    border-radius: var(--radius);
+    transition: background 0.2s, transform 0.2s;
+  }
+  .involve-card:hover {
+    background: rgba(246, 240, 228, 0.14);
+    transform: translateY(-3px);
+  }
+  .involve-card h3 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 1.4rem;
+    font-variation-settings: "opsz" 80;
+    margin-bottom: 0.6rem;
+  }
+  .involve-card p {
+    color: rgba(246, 240, 228, 0.85);
+    font-size: 0.95rem;
+    margin-bottom: 1.25rem;
+  }
+  .involve-card .btn-link {
+    color: var(--cream-soft);
+    font-weight: 600;
+    border-bottom: 1.5px solid var(--cream-soft);
+    padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .involve-card .btn-link:hover {
+    color: var(--sun);
+    border-color: var(--sun);
+  }
+  @media (max-width: 860px) { .involve-grid { grid-template-columns: 1fr; } }
+
+  /* ------------------------------------------------------------------
+     Footer
+  ------------------------------------------------------------------ */
+  footer {
+    background: var(--ink);
+    color: rgba(246, 240, 228, 0.75);
+    padding: 4rem 0 2rem;
+  }
+  .foot-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+  }
+  .foot-brand {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--cream-soft);
+    margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .foot h4 {
+    font-size: 0.8rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--sun);
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+  .foot ul li { margin-bottom: 0.5rem; font-size: 0.95rem; }
+  .foot a:hover { color: var(--sun); }
+  .foot-bottom {
+    border-top: 1px solid rgba(246, 240, 228, 0.15);
+    padding-top: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    font-size: 0.85rem;
+    color: rgba(246, 240, 228, 0.55);
+  }
+  @media (max-width: 760px) { .foot-grid { grid-template-columns: 1fr; gap: 2rem; } }
+
+  /* ------------------------------------------------------------------
+     Reveal animation
+  ------------------------------------------------------------------ */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+    html { scroll-behavior: auto; }
+  }
+
+  /* ------------------------------------------------------------------
+     Decorative
+  ------------------------------------------------------------------ */
+  .deco-line {
+    height: 1px;
+    background: var(--line);
+    width: 100%;
+    margin: 0;
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     NAV
+============================================================ -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#top" class="brand">
+      <svg class="brand-mark" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="16" cy="16" r="15" stroke="#1c2a1f" stroke-width="1.5"/>
+        <path d="M9 22 L9 14 L23 14 L23 22" stroke="#c2542d" stroke-width="2" stroke-linecap="round"/>
+        <circle cx="16" cy="11" r="2" fill="#e9b94a"/>
+        <line x1="14" y1="14" x2="14" y2="22" stroke="#1c2a1f" stroke-width="1.5"/>
+        <line x1="18" y1="14" x2="18" y2="22" stroke="#1c2a1f" stroke-width="1.5"/>
+      </svg>
+      <span>Tuzlanska igrališta</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#problem">Stanje</a></li>
+      <li><a href="#ciljevi">Ciljevi</a></li>
+      <li><a href="#lokacije">Lokacije</a></li>
+      <li><a href="#budzet">Budžet</a></li>
+      <li><a href="#programi">Programi</a></li>
+      <li><a href="#mediji">Mediji</a></li>
+    </ul>
+    <a href="#ukljuci-se" class="nav-cta">Uključi se</a>
+  </div>
+</nav>
+
+<!-- ============================================================
+     HERO
+============================================================ -->
+<header class="hero" id="top">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="reveal">
+        <div class="hero-eyebrow eyebrow">Građanska inicijativa · Tuzla</div>
+        <h1 class="display">
+          Da svako dijete u Tuzli ima <em>sigurno mjesto</em> za igru.
+        </h1>
+        <p class="lead">
+          Pokrećemo udruženje građana koje će preuzeti odgovornost za obnovu, upravljanje i
+          održavanje dječijih igrališta u Tuzli — u partnerstvu sa Gradom, mjesnim zajednicama
+          i porodicama. Cilj je nivo sigurnosti i kvaliteta po evropskim standardima.
+        </p>
+        <div class="hero-cta-row">
+          <a href="#ukljuci-se" class="btn-primary">
+            Pridruži se inicijativi
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <path d="M1 7H13M13 7L8 2M13 7L8 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a href="#problem" class="btn-ghost">Saznaj više</a>
+        </div>
+
+        <dl class="hero-meta" style="margin-top: 4rem;">
+          <div>
+            <dt>Pilot faza</dt>
+            <dd>5 igrališta</dd>
+          </div>
+          <div>
+            <dt>Procijenjen budžet</dt>
+            <dd>≈ 250.000 KM</dd>
+          </div>
+          <div>
+            <dt>Trajanje</dt>
+            <dd>12 mjeseci</dd>
+          </div>
+        </dl>
+      </div>
+
+      <!-- Decorative SVG illustration: stylized swing under a sun -->
+      <div class="hero-art reveal" aria-hidden="true">
+        <svg class="hero-art-inner" viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMax slice">
+          <!-- sun -->
+          <circle cx="310" cy="110" r="55" fill="#e9b94a"/>
+          <!-- sun rays -->
+          <g stroke="#e9b94a" stroke-width="2" stroke-linecap="round" opacity="0.7">
+            <line x1="310" y1="30" x2="310" y2="45"/>
+            <line x1="370" y1="50" x2="360" y2="60"/>
+            <line x1="250" y1="50" x2="260" y2="60"/>
+            <line x1="380" y1="110" x2="395" y2="110"/>
+            <line x1="225" y1="110" x2="240" y2="110"/>
+          </g>
+
+          <!-- ground -->
+          <rect x="0" y="430" width="400" height="80" fill="#9aac86"/>
+          <ellipse cx="200" cy="430" rx="200" ry="20" fill="#9aac86"/>
+
+          <!-- swing frame -->
+          <path d="M 80 430 L 200 130 L 320 430"
+                stroke="#f6f0e4" stroke-width="6" fill="none" stroke-linecap="round"/>
+          <path d="M 100 130 L 300 130"
+                stroke="#f6f0e4" stroke-width="6" stroke-linecap="round"/>
+
+          <!-- swing ropes -->
+          <line x1="160" y1="130" x2="160" y2="290" stroke="#f6f0e4" stroke-width="2.5"/>
+          <line x1="220" y1="130" x2="220" y2="290" stroke="#f6f0e4" stroke-width="2.5"/>
+
+          <!-- swing seat -->
+          <rect x="145" y="285" width="90" height="14" rx="3" fill="#c2542d"/>
+
+          <!-- small bird -->
+          <g transform="translate(70, 95)">
+            <path d="M0 5 Q 5 0, 10 5 Q 15 0, 20 5" stroke="#f6f0e4" stroke-width="2" fill="none" stroke-linecap="round"/>
+          </g>
+          <g transform="translate(120, 75)">
+            <path d="M0 5 Q 5 0, 10 5 Q 15 0, 20 5" stroke="#f6f0e4" stroke-width="2" fill="none" stroke-linecap="round"/>
+          </g>
+
+          <!-- grass blades -->
+          <g stroke="#3f5a3a" stroke-width="2" stroke-linecap="round">
+            <line x1="40" y1="450" x2="40" y2="442"/>
+            <line x1="55" y1="455" x2="55" y2="445"/>
+            <line x1="350" y1="450" x2="350" y2="442"/>
+            <line x1="370" y1="455" x2="370" y2="448"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============================================================
+     PROBLEM
+============================================================ -->
+<section class="problem" id="problem">
+  <div class="container">
+    <div class="problem-head reveal">
+      <div>
+        <div class="eyebrow">Trenutna situacija</div>
+      </div>
+      <h2 class="display">
+        Igrališta su zastarjela, oštećena i <em>nesigurna</em> — bez jasne odgovornosti za održavanje.
+      </h2>
+    </div>
+
+    <p class="lead reveal" style="margin-bottom: 4rem;">
+      Istraživanja i lokalni akcioni planovi pokazuju da igrališta nisu ravnomjerno raspoređena
+      po naseljima, posebno nedostaju u prigradskim dijelovima, a u BiH ne postoji precizan
+      zakonski okvir koji definiše čija je nadležnost izgradnja i održavanje.
+    </p>
+
+    <dl class="stats reveal">
+      <div class="stat">
+        <div class="stat-num">0<small>/ svih</small></div>
+        <div class="stat-label">igrališta u Tuzli prilagođeno je djeci sa invaliditetom</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">30<small>+ god.</small></div>
+        <div class="stat-label">starosti pojedinih sprava na frekventnim igralištima</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">0<small>KM/god</small></div>
+        <div class="stat-label">posebnog budžeta za sistemsko održavanje izvan periodičnih akcija</div>
+      </div>
+    </dl>
+  </div>
+</section>
+
+<!-- ============================================================
+     CILJEVI
+============================================================ -->
+<section id="ciljevi">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <div class="eyebrow">Ciljevi projekta</div>
+      </div>
+      <h2 class="display">
+        Pet konkretnih obaveza prema djeci i <em>zajednici</em>.
+      </h2>
+    </div>
+
+    <div class="goals-grid reveal">
+      <div class="goal">
+        <div class="goal-num">01</div>
+        <div>
+          <h3>Sigurna i moderna igrališta</h3>
+          <p>Obnova mobilijara, sigurnosnih podloga i ograda po EU standardima — EN 1176 za opremu i EN 1177 za podloge — kako bi se smanjio rizik od povreda.</p>
+        </div>
+      </div>
+      <div class="goal">
+        <div class="goal-num">02</div>
+        <div>
+          <h3>Institucionalizacija brige</h3>
+          <p>Formalno udruženje preuzima ulogu „čuvara igrališta" — definira pravila, sistem prijave kvarova i jasnu odgovornost za održavanje.</p>
+        </div>
+      </div>
+      <div class="goal">
+        <div class="goal-num">03</div>
+        <div>
+          <h3>Pilot obnova 5 igrališta</h3>
+          <p>Prioritetne lokacije u različitim naseljima — od centra do prigradskih MZ — pokazuju model upravljanja koji se kasnije širi na cijeli grad.</p>
+        </div>
+      </div>
+      <div class="goal">
+        <div class="goal-num">04</div>
+        <div>
+          <h3>Održivo finansiranje</h3>
+          <p>Kombinacija donacija, podrške Grada, crowdfundinga i grantova umjesto jednokratnih akcija — stabilan budžet za redovno održavanje.</p>
+        </div>
+      </div>
+      <div class="goal">
+        <div class="goal-num">05</div>
+        <div>
+          <h3>Igralište kao centar zajednice</h3>
+          <p>Edukativne, porodične i inkluzivne aktivnosti pretvaraju igralište iz pasivnog prostora u mjesto okupljanja generacija.</p>
+        </div>
+      </div>
+      <div class="goal">
+        <div class="goal-num">06</div>
+        <div>
+          <h3>Inkluzija djece sa poteškoćama</h3>
+          <p>Prilagođene sprave i programi po prvi put otvaraju javna igrališta u Tuzli i djeci s invaliditetom — ravnopravno i sigurno.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     LOKACIJE
+============================================================ -->
+<section class="locations" id="lokacije">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <div class="eyebrow">Pilot faza · Faza I</div>
+      </div>
+      <h2 class="display">
+        Pet naselja, pet obnovljenih igrališta — <em>dvanaest mjeseci</em>.
+      </h2>
+    </div>
+
+    <p class="lead reveal" style="margin-bottom: 3rem;">
+      Lokacije su odabrane u saradnji sa Službom za komunalne poslove i mjesnim zajednicama,
+      prema gustini naseljenosti, broju djece, stanju igrališta i regionalnoj zastupljenosti —
+      kako bi obuhvatile i centralne i prigradske dijelove grada.
+    </p>
+
+    <div class="loc-grid reveal">
+      <div class="loc">
+        <span class="loc-num">01</span>
+        <div class="loc-tag">MZ Sjenjak</div>
+        <h3>Najveća urbana MZ u Tuzli</h3>
+        <p>~9.000 stanovnika, gusto naseljeni stambeni blokovi. Postojeće igralište starije je od 30 godina, sa nekoliko neispravnih sprava. Obnova bi pokazala opipljivu promjenu u samom centru grada.</p>
+      </div>
+      <div class="loc">
+        <span class="loc-num">02</span>
+        <div class="loc-tag">MZ Stupine / Brčanska Malta</div>
+        <h3>Mlade porodice u novogradnji</h3>
+        <p>Susjedne MZ s velikim brojem mladih porodica. Igrališta su neograđena i dijele prostor s improvizovanim parkingom. Plan je centralno igralište koje opslužuje obje zajednice, jasno odvojeno od saobraćaja.</p>
+      </div>
+      <div class="loc">
+        <span class="loc-num">03</span>
+        <div class="loc-tag">MZ Slavinovići</div>
+        <h3>Naselje u ekspanziji bez uređenog prostora</h3>
+        <p>Veliko stambeno naselje mješovite izgradnje. Trenutno djeca koriste školsko dvorište ili improvizovani travnjak. Lokacija u parku obezbjeđuje siguran prostor za igru u gusto naseljenoj zoni.</p>
+      </div>
+      <div class="loc">
+        <span class="loc-num">04</span>
+        <div class="loc-tag">MZ Solina</div>
+        <h3>Most prema prigradskim zajednicama</h3>
+        <p>Rubno gradsko naselje sa porodičnim kućama. Postojeće igralište privlači djecu iz Simin Hana i Moluha. Obnova podiže kvalitet života u prigradskim zajednicama, koje su posebno deficitarne sadržajima.</p>
+      </div>
+      <div class="loc">
+        <span class="loc-num">05</span>
+        <div class="loc-tag">MZ Miladije</div>
+        <h3>Starije naselje, dugo neobnavljano</h3>
+        <p>Sprave su zahrđale, zaštitna ograda djelomično nedostaje. Obnova uključuje prilagodbu za djecu različitog uzrasta — od mobilijara za predškolce do izazova za osnovce.</p>
+      </div>
+      <div class="loc" style="background: rgba(233, 185, 74, 0.08); border-color: rgba(233, 185, 74, 0.3);">
+        <span class="loc-num" style="color: rgba(233, 185, 74, 0.55);">+</span>
+        <div class="loc-tag">Faza II</div>
+        <h3>Skaliranje po gradu</h3>
+        <p>Nakon evaluacije pilota, model se širi na sva preostala gradska igrališta — uz iskustvo, partnerstva i procedure razvijene u prvih dvanaest mjeseci.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     BUDŽET
+============================================================ -->
+<section id="budzet">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <div class="eyebrow">Procjena troškova</div>
+      </div>
+      <h2 class="display">
+        Koliko košta obnova jednog igrališta od <em>~100 m²</em>.
+      </h2>
+    </div>
+
+    <div class="budget-wrap reveal">
+      <div class="budget-row">
+        <div class="b-item">Demontaža starog mobilijara</div>
+        <div class="b-desc">Uklanjanje dotrajalih sprava, priprema terena</div>
+        <div class="b-amount">3.000 KM</div>
+      </div>
+      <div class="budget-row">
+        <div class="b-item">Novi mobilijar za igru</div>
+        <div class="b-desc">Ljuljačke (2 sjedala), tobogan, klackalica, njihalica — standardizirana CE oprema</div>
+        <div class="b-amount">20.000 KM</div>
+      </div>
+      <div class="budget-row">
+        <div class="b-item">Sigurnosna podloga</div>
+        <div class="b-desc">Gumene podne ploče po cijeloj površini sa pripremom podloge</div>
+        <div class="b-amount">15.000 KM</div>
+      </div>
+      <div class="budget-row">
+        <div class="b-item">Zaštitna ograda i kapija</div>
+        <div class="b-desc">Metalna ograda visine ~1m, dužine ~60m, sa kapijom na ulazu</div>
+        <div class="b-amount">5.000 KM</div>
+      </div>
+      <div class="budget-row">
+        <div class="b-item">Urbani mobilijar</div>
+        <div class="b-desc">2 klupe za sjedenje, 2 metalne kante za otpatke, sa ugradnjom</div>
+        <div class="b-amount">2.000 KM</div>
+      </div>
+      <div class="budget-row">
+        <div class="b-item">Informativna tabla</div>
+        <div class="b-desc">Dvojezična tabla sa pravilima ponašanja i kontaktima za prijavu</div>
+        <div class="b-amount">500 KM</div>
+      </div>
+      <div class="budget-row">
+        <div class="b-item">Instalacija i radovi</div>
+        <div class="b-desc">Ugradnja opreme, betoniranje sidrišta, fini radovi uređenja</div>
+        <div class="b-amount">5.000 KM</div>
+      </div>
+      <div class="budget-row total">
+        <div class="b-item">Ukupno po igralištu</div>
+        <div class="b-desc">~ 25.500 € · varira sa veličinom i izborom opreme</div>
+        <div class="b-amount">≈ 50.000 KM</div>
+      </div>
+    </div>
+
+    <div class="budget-note reveal">
+      <strong>Napomena.</strong> Veća igrališta sa više sprava mogu koštati i do 100.000 KM.
+      Optimizacijom kroz donacije opreme i volonterski rad ostavljamo prostor za uštede,
+      ali bez kompromisa na sigurnosti i kvaliteti — sav mobilijar nabavlja se od certificiranih
+      proizvođača sa CE oznakom.
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FUNDING
+============================================================ -->
+<section class="funding" id="finansiranje">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <div class="eyebrow">Model finansiranja</div>
+      </div>
+      <h2 class="display">
+        Cilj Faze I: <em>250.000 KM</em> iz četiri stuba.
+      </h2>
+    </div>
+
+    <div class="pillars reveal">
+      <div class="pillar">
+        <div class="pillar-pct">30%</div>
+        <h4>Donacije građana i firmi</h4>
+        <p>Pojedinci, dijaspora, lokalne firme — sponzorisanje konkretnih elemenata (klupa, sprava).</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-pct">20%</div>
+        <h4>Grad Tuzla</h4>
+        <p>Sufinansiranje inicijalnih radova, ustupanje opreme i radne snage komunalnih službi.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-pct">20%</div>
+        <h4>Crowdfunding</h4>
+        <p>Online kampanje sa podciljevima po igralištu — uključuje dijasporu i šire donatore.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-pct">20%</div>
+        <h4>Grantovi i fondovi</h4>
+        <p>UNICEF, EU fondovi za lokalni razvoj, FBiH ministarstva — ciljano prema fazama projekta.</p>
+      </div>
+    </div>
+
+    <p style="margin-top: 2rem; color: var(--ink-soft); font-size: 0.95rem; max-width: 60ch;" class="reveal">
+      Preostalih ~10% čine vlastiti prihodi udruženja — humanitarni bazari, godišnji „Dan igrališta",
+      sponzorisani štandovi. Godišnji troškovi održavanja po igralištu procijenjeni su na 1.000–2.000 KM.
+    </p>
+  </div>
+</section>
+
+<!-- ============================================================
+     PROGRAMI
+============================================================ -->
+<section id="programi">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <div class="eyebrow">Dugoročni programi</div>
+      </div>
+      <h2 class="display">
+        Igralište nije samo prostor — <em>centar je zajednice</em>.
+      </h2>
+    </div>
+
+    <div class="programs-grid reveal">
+      <div class="program">
+        <svg class="program-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+          <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+        </svg>
+        <h3>Edukativne radionice</h3>
+        <p>Igralište kao učionica na otvorenom — sigurnost i prva pomoć (uz Crveni križ), ekološke akcije, vježbe za motoriku prilagođene djeci.</p>
+      </div>
+      <div class="program">
+        <svg class="program-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+          <circle cx="9" cy="7" r="4"/>
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+          <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
+        <h3>Porodični dani</h3>
+        <p>Mini-olimpijade, pikniki u parku, ljetne projekcije crtanih filmova na otvorenom — događaji koji jačaju veze među komšijama.</p>
+      </div>
+      <div class="program">
+        <svg class="program-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 6.253v13"/>
+          <path d="M12 6.253C10.832 5.477 9.246 5 7.5 5 5.754 5 4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253"/>
+          <path d="M12 6.253C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18s-3.332.477-4.5 1.253"/>
+        </svg>
+        <h3>Učionica na otvorenom</h3>
+        <p>Saradnja sa vrtićima i osnovnim školama. Časovi fizičkog vaspitanja, prirode i slobodne aktivnosti dobijaju novi prostor.</p>
+      </div>
+      <div class="program">
+        <svg class="program-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+        </svg>
+        <h3>Inkluzija</h3>
+        <p>Adaptirane sprave (ljuljačke za djecu u kolicima, senzorne igračke), „Dan za svako dijete" — rušenje barijera među djecom.</p>
+      </div>
+      <div class="program">
+        <svg class="program-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+        </svg>
+        <h3>Kulturni programi</h3>
+        <p>Lutkarske predstave, dječiji teatar, gostovanja umjetnika. Likovne radionice za oslikavanje murala u susjedstvu.</p>
+      </div>
+      <div class="program">
+        <svg class="program-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 11H5a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7a2 2 0 0 0-2-2h-4"/>
+          <polyline points="9 11 12 14 15 11"/>
+          <line x1="12" y1="2" x2="12" y2="14"/>
+        </svg>
+        <h3>Pravilnik i nadzor</h3>
+        <p>Jasno istaknuta pravila, „dežurni roditelji", saradnja s komunalnom inspekcijom i policijom — kultura odgovornosti.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     U MEDIJIMA
+============================================================ -->
+<section class="media" id="mediji">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <div class="eyebrow">U medijima</div>
+      </div>
+      <h2 class="display">
+        Što tuzlanski mediji već <em>godinama izvještavaju</em>.
+      </h2>
+    </div>
+
+    <p class="lead reveal" style="margin-bottom: 1rem;">
+      Problem nije apstraktan — svjedoče mu lokalni novinari, roditelji i mjesne zajednice.
+      Ispod su odabrane objave o stanju igrališta i konkretnim građanskim akcijama u Tuzli.
+    </p>
+
+    <!-- Group 1: Stanje igrališta -->
+    <div class="media-group reveal">
+      <div class="media-group-title">Stanje na terenu</div>
+      <div class="media-grid">
+
+        <a class="media-card" href="https://tuzlanski.ba/vijesti/bih/brojna-ostecenja-na-djecijem-igralistu-na-sjenjaku-pojedini-dijelovi-postali-opasni-za-koristenje/1011566" target="_blank" rel="noopener">
+          <div class="media-meta">
+            <span class="media-source">Tuzlanski.ba</span>
+            <span class="media-date">8. maj 2026.</span>
+          </div>
+          <h3>Brojna oštećenja na dječijem igralištu na Sjenjaku</h3>
+          <p>Dio igrališta na Sjenjaku, koji svakodnevno koristi veliki broj djece, oštećen je vandalizmom. Pojedini dijelovi mobilijara više nisu sigurni za korištenje.</p>
+          <span class="media-link">
+            Pročitaj
+            <svg width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden="true">
+              <path d="M2 9 L9 2 M3.5 2 L9 2 L9 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </a>
+
+        <a class="media-card" href="https://tuzlanski.ba/vijesti/bih/zapusten-djeciji-park-na-slanoj-banji-gradani-upozoravaju-na-opasnost-pred-ljetnu-sezonu/1009140" target="_blank" rel="noopener">
+          <div class="media-meta">
+            <span class="media-source">Tuzlanski.ba</span>
+            <span class="media-date">22. mart 2026.</span>
+          </div>
+          <h3>Zapušten dječiji zabavni park na Slanoj Banji</h3>
+          <p>Park otvoren 2009. više ne ispunjava postavljene standarde — zahrđale konstrukcije, polomljene zaštitne podloge i sprave ograđene trakom, dok se ulaz i dalje naplaćuje.</p>
+          <span class="media-link">
+            Pročitaj
+            <svg width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden="true">
+              <path d="M2 9 L9 2 M3.5 2 L9 2 L9 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </a>
+
+        <a class="media-card" href="https://tuzlanski.ba/vijesti/bih/iz-os-novi-grad-tuzla-upozoravaju-na-unistavanje-igralista-o-svemu-je-obavijestena-policija/1010101" target="_blank" rel="noopener">
+          <div class="media-meta">
+            <span class="media-source">Tuzlanski.ba</span>
+            <span class="media-date">April 2026.</span>
+          </div>
+          <h3>OŠ Novi grad Tuzla: uništavanje igrališta, krivična prijava</h3>
+          <p>Gol na školskom igralištu uništen vješanjem i nasilnim guranjem. Igralište je pod video nadzorom, policija obaviještena, a šteta će biti naplaćena roditeljima.</p>
+          <span class="media-link">
+            Pročitaj
+            <svg width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden="true">
+              <path d="M2 9 L9 2 M3.5 2 L9 2 L9 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- Group 2: Inicijative i obnove -->
+    <div class="media-group reveal">
+      <div class="media-group-title">Inicijative i obnove u Tuzli</div>
+      <div class="media-grid">
+
+        <a class="media-card" href="https://tuzlanski.ba/vijesti/bih/djecije-igraliste-grbavica-u-tuzli-u-novom-ruhu/752604" target="_blank" rel="noopener">
+          <div class="media-meta">
+            <span class="media-source">Tuzlanski.ba</span>
+            <span class="media-date">August 2022.</span>
+          </div>
+          <h3>Igralište Grbavica u novom ruhu — model koji radi</h3>
+          <p>Neformalna grupa građana iz MZ Brčanska Malta prikupila preko 15.000 KM, postavili novu rasvjetu, sprave, koš i odbojkaški teren. Inspiracija drugim mjesnim zajednicama.</p>
+          <span class="media-link">
+            Pročitaj
+            <svg width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden="true">
+              <path d="M2 9 L9 2 M3.5 2 L9 2 L9 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </a>
+
+        <a class="media-card" href="https://tuzlalive.ba/novi-sadrzaji-na-djecijim-igralistima-grad-unaprijedio-infrastrukturu-za-najmladje/" target="_blank" rel="noopener">
+          <div class="media-meta">
+            <span class="media-source">Tuzla L!VE</span>
+            <span class="media-date">Februar 2026.</span>
+          </div>
+          <h3>PA.CON II: nove inkluzivne sprave na 9 lokacija</h3>
+          <p>Grad Tuzla postavio interaktivne memory table sa motivima ptica i sedam „gnijezdo ljuljaški" prilagođenih djeci s poteškoćama u razvoju — prvi konkretan korak prema inkluziji.</p>
+          <span class="media-link">
+            Pročitaj
+            <svg width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden="true">
+              <path d="M2 9 L9 2 M3.5 2 L9 2 L9 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </a>
+
+        <a class="media-card" href="https://tuzlanski.ba/vijesti/bih/zbor-u-centru-tuzle-gradjanima-obecana-javna-garaza-i-poplocavanje-dijela-rijeke-jale/955959" target="_blank" rel="noopener">
+          <div class="media-meta">
+            <span class="media-source">Tuzlanski.ba</span>
+            <span class="media-date">April 2024.</span>
+          </div>
+          <h3>Zbor građana: traže nova igrališta i bolje održavanje</h3>
+          <p>Stanovnici MZ Centar i Stari grad od nadležnih traže izgradnju novih i održavanje postojećih igrališta. Gradski Zavod za urbanizam navodi probleme s imovinsko-pravnim odnosima.</p>
+          <span class="media-link">
+            Pročitaj
+            <svg width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden="true">
+              <path d="M2 9 L9 2 M3.5 2 L9 2 L9 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </a>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     UKLJUČI SE
+============================================================ -->
+<section class="involve" id="ukljuci-se">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <div class="eyebrow">Uključi se</div>
+      </div>
+      <h2 class="display">
+        Tri načina da projekat <em>zaživi</em>.
+      </h2>
+    </div>
+
+    <p class="lead reveal">
+      Tražimo osnivače udruženja, donatore i volontere. Svaki doprinos — od 5 KM mjesečno
+      do volonterskog sata — direktno se pretvara u sigurniji prostor za nečije dijete.
+    </p>
+
+    <div class="involve-grid reveal">
+      <div class="involve-card">
+        <h3>Postani osnivač</h3>
+        <p>Inicijativni odbor traži 5–7 istaknutih građana, roditelja i pedagoga koji žele biti dio osnivačke skupštine.</p>
+        <a href="#kontakt" class="btn-link">Prijavi se →</a>
+      </div>
+      <div class="involve-card">
+        <h3>Doniraj</h3>
+        <p>Jednokratna donacija ili „prijatelj igrališta" — mjesečna podrška od simboličnih 5–10 KM. Sve transparentno.</p>
+        <a href="#kontakt" class="btn-link">Saznaj kako →</a>
+      </div>
+      <div class="involve-card">
+        <h3>Volontiraj</h3>
+        <p>Akcije čišćenja, organizacija porodičnih dana, „dežurni roditelj" za igralište u svom kvartu — vremena uvijek nedostaje.</p>
+        <a href="#kontakt" class="btn-link">Pridruži se →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+============================================================ -->
+<footer id="kontakt">
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot">
+        <div class="foot-brand">
+          <svg width="36" height="36" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="16" cy="16" r="15" stroke="#f6f0e4" stroke-width="1.5"/>
+            <path d="M9 22 L9 14 L23 14 L23 22" stroke="#e9b94a" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="16" cy="11" r="2" fill="#e9b94a"/>
+            <line x1="14" y1="14" x2="14" y2="22" stroke="#f6f0e4" stroke-width="1.5"/>
+            <line x1="18" y1="14" x2="18" y2="22" stroke="#f6f0e4" stroke-width="1.5"/>
+          </svg>
+          Tuzlanska igrališta
+        </div>
+        <p style="max-width: 40ch; font-size: 0.95rem;">
+          Inicijativni odbor za osnivanje udruženja građana
+          „Za radost djece — Tuzlanska igrališta".
+        </p>
+      </div>
+
+      <div class="foot">
+        <h4>Kontakt</h4>
+        <ul>
+          <li><a href="mailto:kontakt@example.ba">kontakt@example.ba</a></li>
+          <li>+387 — — — —</li>
+          <li>Tuzla, BiH</li>
+        </ul>
+      </div>
+
+      <div class="foot">
+        <h4>Navigacija</h4>
+        <ul>
+          <li><a href="#problem">Stanje</a></li>
+          <li><a href="#ciljevi">Ciljevi</a></li>
+          <li><a href="#lokacije">Lokacije</a></li>
+          <li><a href="#budzet">Budžet</a></li>
+          <li><a href="#programi">Programi</a></li>
+          <li><a href="#mediji">Mediji</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="foot-bottom">
+      <span>© <span id="year"></span> Tuzlanska igrališta · Inicijativni odbor</span>
+      <span>Napravljeno sa nadom za djecu u Tuzli.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================================
+     JS
+============================================================ -->
+<script>
+  // Footer year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Reveal-on-scroll
+  if ('IntersectionObserver' in window) {
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          obs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach((el) => obs.observe(el));
+  } else {
+    document.querySelectorAll('.reveal').forEach((el) => el.classList.add('visible'));
+  }
+</script>
+
+</body>
+</html>
